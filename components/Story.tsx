@@ -69,9 +69,8 @@ export default function Story() {
                 ultimately chose Columbia University in New York City.
               </p>
               <p className="font-body text-brand-secondary text-lg leading-relaxed">
-                I built Weaver Consulting because every student in this region deserves access to
-                the same level of guidance that students at elite private schools take for granted.
-                Your zip code should not determine your ceiling.
+                I built Weaver Consulting because every student deserves access to the resources
+                they need to plan their future — no matter their zip code or their school.
               </p>
             </div>
 
