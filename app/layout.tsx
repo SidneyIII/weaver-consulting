@@ -19,7 +19,7 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Weaver Consulting | College Advising & Life Coaching",
   description:
-    "College advising, essay prep, and life coaching from Sidney Weaver III — Columbia University Class of 2026, accepted to 27+ colleges including multiple Ivies. Serving students and families nationwide.",
+    "College advising, essay prep, and life coaching from Sidney Weaver III — Columbia University Class of 2026, accepted to 30+ colleges including multiple Ivies. Serving students and families nationwide.",
   keywords: [
     "college advising Omaha",
     "college counseling Midwest",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { PhoneIcon, EnvelopeIcon } from "@/components/icons";
 
 type FormState = {
@@ -31,6 +31,8 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -38,11 +40,23 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
-    // TODO: Wire to email service (Resend or Formspree recommended)
-    // TODO: Add Calendly embed for booking once account is created
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please email directly at sidney78910@gmail.com.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass =
@@ -206,13 +220,17 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col gap-3">
               <button
                 type="submit"
-                className="w-full sm:w-auto px-10 py-4 rounded bg-brand-green text-white font-body font-semibold text-base hover:bg-brand-navy transition-colors duration-200 shadow-sm cursor-pointer"
+                disabled={loading}
+                className="w-full sm:w-auto px-10 py-4 rounded bg-brand-green text-white font-body font-semibold text-base hover:bg-brand-navy transition-colors duration-200 shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Message
+                {loading ? "Sending…" : "Send Message"}
               </button>
+              {error && (
+                <p className="font-body text-sm text-red-600">{error}</p>
+              )}
             </div>
           </form>
         )}

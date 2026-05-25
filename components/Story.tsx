@@ -64,7 +64,7 @@ export default function Story() {
                 find them myself.
               </p>
               <p className="font-body text-brand-secondary text-lg leading-relaxed">
-                I applied to colleges on my own, got accepted to 27+ schools including multiple Ivy
+                I applied to colleges on my own, got accepted to 30+ schools including multiple Ivy
                 Leagues, UCLA, Berkeley, Georgetown, and UNC, received several full-ride offers, and
                 ultimately chose Columbia University in New York City.
               </p>
